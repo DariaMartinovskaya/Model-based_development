@@ -1,4 +1,3 @@
-# Model-based_development
 
 Here tasks performed within the subject as well as final project are collected.
 
