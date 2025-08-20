@@ -91,3 +91,5 @@ Two sequential storage places, each with a capacity of one.
 A resource must move from the first store to the second before being eligible for consumption.
 
 After the resource reaches the second store, any of three consumers can consume it (non-deterministic selection).
+
+<a href="MBDTask2.2.rnw">Source rnw model.</a>
