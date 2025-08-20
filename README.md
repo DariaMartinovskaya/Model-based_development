@@ -78,7 +78,7 @@ After consuming, the current consumer passes control ("the baton") to the other.
 
 This ensures strict alternation, preventing the same consumer from consuming twice in a row.
 
-Source rnw file: 
+<a href="MBDTask2.1.rnw">Source rnw model.</a>
 
 ### Exercise 2 – Sequential Stores with Multiple Consumers 
 
