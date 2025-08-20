@@ -62,6 +62,32 @@ Synchronization (T2): Ensures the user has entered all required search parameter
 Parallelism (T7): Once payment is completed, both ticket generation and trip booking occur simultaneously.
 
 
+# Task 2: RENEW models: Alternating Consumers & Sequential Stores with Multiple Consumers 
 
+These two exercises were modeled using the Reference Net Workshop (RNW) tool, each saved in the corresponding .rnw file and submitted in a ZIP archive as required.
 
-# Task 2: Model using a Place/Transition Petri net for online purchasing train tickets system 
+### Exercise 1 – Alternating Consumers 
+
+![T2.1](MBDTask2.1.png)
+
+This model enforces alternating access to a shared storage between two consumers.
+
+Only one consumer can retrieve a resource at a time.
+
+After consuming, the current consumer passes control ("the baton") to the other.
+
+This ensures strict alternation, preventing the same consumer from consuming twice in a row.
+
+Source rnw file: 
+
+### Exercise 2 – Sequential Stores with Multiple Consumers 
+
+![T2.2](MBDTask2.2.png)
+
+This model introduces:
+
+Two sequential storage places, each with a capacity of one.
+
+A resource must move from the first store to the second before being eligible for consumption.
+
+After the resource reaches the second store, any of three consumers can consume it (non-deterministic selection).
