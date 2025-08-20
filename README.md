@@ -1,6 +1,6 @@
 # Model-based_development
 
-
+Here tasks performed within the subject as well as final project are collected.
 
 # Content
 - ### [Task 1: Model using a Place/Transition Petri net for online purchasing train tickets system](https://github.com/DariaMartinovskaya/Model-based_development/blob/main/README.md#task-1-model-using-a-placetransition-petri-net-for-online-purchasing-train-tickets-system-1)
