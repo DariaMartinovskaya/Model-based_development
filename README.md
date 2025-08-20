@@ -7,6 +7,8 @@
 
 # Task 1: Model using a Place/Transition Petri net for online purchasing train tickets system 
 
+![T1](MBDTask1.png)
+
 This model presents a Place/Transition Petri net model representing the online train ticket purchase process. The model captures key steps of a typical user journey when purchasing a train ticket through an online platform.
 
 ### It includes:
