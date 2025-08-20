@@ -176,6 +176,8 @@ Realistic simulation of a distributed producer-storage-consumer architecture.
 
 # Task 4: Door Control System with Signal-Based Motor and Counter
 
+![T4](MBDTask4.png)
+
 Model requirements:
 
 - A button controls a door that opens and closes. But you can also use two or three buttons.
@@ -190,4 +192,4 @@ Model requirements:
 
 - You must use at least one input signal and one input event.
 
-
+<a href="MBDTask4_Automatic_door_DM_26610.pnml">Source rnw model.</a>
