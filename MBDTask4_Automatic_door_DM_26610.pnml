@@ -1,0 +1,527 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<Snoopy revision="0" version="0">
+  <pnml>
+    <net id="1" name="Automatic_door" type="IOPT">
+      <input>
+        <signal id="is_button" type="boolean" value="0" gpio_nr="0">
+          <graphics>
+            <position page="1" x="60" y="50"/>
+          </graphics>
+        </signal>
+        <signal id="is_sensor_open" type="boolean" value="0" gpio_nr="0" min="0" max="1">
+          <graphics>
+            <position page="1" x="60" y="80"/>
+          </graphics>
+        </signal>
+        <event id="ie_button_pressed" edge="up" level="0" signal="is_button">
+          <graphics>
+            <position page="1" x="50" y="260"/>
+          </graphics>
+        </event>
+      </input>
+      <output>
+        <signal id="os_motor_on" type="boolean" value="0" gpio_nr="0" min="0" max="1" wrap="0">
+          <graphics>
+            <position page="1" x="60" y="130"/>
+          </graphics>
+        </signal>
+        <signal id="os_motor_open" type="boolean" value="0" gpio_nr="0" min="0" max="1" wrap="0">
+          <graphics>
+            <position page="1" x="60" y="160"/>
+          </graphics>
+        </signal>
+        <signal id="os_motor_close" type="boolean" value="0" gpio_nr="0">
+          <graphics>
+            <position page="1" x="60" y="190"/>
+          </graphics>
+        </signal>
+        <signal id="os_motor_counter" type="range" value="0" gpio_nr="0" min="0" max="3" wrap="0">
+          <graphics>
+            <position page="1" x="60" y="210"/>
+          </graphics>
+        </signal>
+        <event id="oe_limited_reached" edge="up" level="0" signal="">
+          <graphics>
+            <position page="1" x="50" y="290"/>
+          </graphics>
+        </event>
+      </output>
+      <variable/>
+      <place id="2">
+        <name>
+          <text>Opened</text>
+          <graphics>
+            <offset x="-10" y="20"/>
+          </graphics>
+        </name>
+        <comment>
+          <text/>
+          <graphics>
+            <offset x="-30" y="20"/>
+          </graphics>
+        </comment>
+        <initialMarking>
+          <text>0</text>
+          <graphics>
+            <offset x="0" y="-1"/>
+          </graphics>
+        </initialMarking>
+        <bound>
+          <text>3</text>
+        </bound>
+        <graphics>
+          <position page="1" x="600" y="220"/>
+        </graphics>
+      </place>
+      <place id="3">
+        <name>
+          <text>Moving to be closed</text>
+          <graphics>
+            <offset x="-10" y="20"/>
+          </graphics>
+        </name>
+        <comment>
+          <text/>
+          <graphics>
+            <offset x="-30" y="20"/>
+          </graphics>
+        </comment>
+        <initialMarking>
+          <text>0</text>
+          <graphics>
+            <offset x="0" y="-1"/>
+          </graphics>
+        </initialMarking>
+        <bound>
+          <text>3</text>
+        </bound>
+        <graphics>
+          <position page="1" x="580" y="470"/>
+        </graphics>
+      </place>
+      <transition id="4">
+        <name>
+          <text>Start closing</text>
+          <graphics>
+            <offset x="-10" y="20"/>
+          </graphics>
+        </name>
+        <comment>
+          <text/>
+          <graphics>
+            <offset x="-30" y="20"/>
+          </graphics>
+        </comment>
+        <priority>1</priority>
+        <signalInputGuards>
+          <signalinputguard>
+            <concreteSyntax language="iopt">
+              <text>is_sensor_open = 1</text>
+              <expression>
+                <operand type="input-signal" idRef="is_sensor_open" seq="4"/>
+                <operation operator="equal" seq="5">
+                  <operand type="literal" value="1" seq="6"/>
+                </operation>
+              </expression>
+            </concreteSyntax>
+          </signalinputguard>
+        </signalInputGuards>
+        <inputEvents>
+          <event idRef="ie_button_pressed"/>
+        </inputEvents>
+        <graphics>
+          <position page="1" x="600" y="340"/>
+        </graphics>
+        <outputEvents/>
+        <signalOutputActions>
+          <signalOutputAction idRef="os_motor_close">
+            <value>
+              <concreteSyntax language="iopt">
+                <text>1</text>
+                <expression>
+                  <operand type="literal" value="1" seq="1"/>
+                </expression>
+              </concreteSyntax>
+            </value>
+          </signalOutputAction>
+          <signalOutputAction idRef="os_motor_on">
+            <value>
+              <concreteSyntax language="iopt">
+                <text>1</text>
+                <expression>
+                  <operand type="literal" value="1" seq="1"/>
+                </expression>
+              </concreteSyntax>
+            </value>
+          </signalOutputAction>
+        </signalOutputActions>
+      </transition>
+      <transition id="5">
+        <name>
+          <text>Finish closing</text>
+          <graphics>
+            <offset x="-10" y="20"/>
+          </graphics>
+        </name>
+        <comment>
+          <text/>
+          <graphics>
+            <offset x="-30" y="20"/>
+          </graphics>
+        </comment>
+        <priority>1</priority>
+        <signalInputGuards>
+          <signalinputguard>
+            <concreteSyntax language="iopt">
+              <text/>
+              <expression/>
+            </concreteSyntax>
+          </signalinputguard>
+        </signalInputGuards>
+        <inputEvents/>
+        <graphics>
+          <position page="1" x="430" y="530"/>
+        </graphics>
+        <outputEvents>
+          
+          
+        </outputEvents>
+        <signalOutputActions>
+          <signalOutputAction idRef="os_motor_on">
+            <value>
+              <concreteSyntax language="iopt">
+                <text>0</text>
+                <expression>
+                  <operand type="literal" value="0" seq="1"/>
+                </expression>
+              </concreteSyntax>
+            </value>
+          </signalOutputAction>
+        </signalOutputActions>
+      </transition>
+      <transition id="6">
+        <name>
+          <text>Finish opening</text>
+          <graphics>
+            <offset x="-10" y="20"/>
+          </graphics>
+        </name>
+        <comment>
+          <text/>
+          <graphics>
+            <offset x="-30" y="20"/>
+          </graphics>
+        </comment>
+        <priority>1</priority>
+        <signalInputGuards/>
+        <inputEvents/>
+        <graphics>
+          <position page="1" x="450" y="100"/>
+        </graphics>
+        <outputEvents>
+          
+          
+          
+        </outputEvents>
+        <signalOutputActions>
+          <signalOutputAction idRef="os_motor_on">
+            <value>
+              <concreteSyntax language="iopt">
+                <text>0</text>
+                <expression>
+                  <operand type="literal" value="0" seq="1"/>
+                </expression>
+              </concreteSyntax>
+            </value>
+          </signalOutputAction>
+          <signalOutputAction idRef="os_motor_counter">
+            <value>
+              <concreteSyntax language="iopt">
+                <text>os_motor_counter + 1</text>
+                <expression>
+                  <operand type="output-signal" idRef="os_motor_counter" seq="1"/>
+                  <operation operator="addition" seq="3">
+                    <operand type="literal" value="1" seq="4"/>
+                  </operation>
+                </expression>
+              </concreteSyntax>
+            </value>
+          </signalOutputAction>
+        </signalOutputActions>
+      </transition>
+      <place id="7">
+        <name>
+          <text>Moving to be opened</text>
+          <graphics>
+            <offset x="-10" y="20"/>
+          </graphics>
+        </name>
+        <comment>
+          <text/>
+          <graphics>
+            <offset x="-30" y="20"/>
+          </graphics>
+        </comment>
+        <initialMarking>
+          <text>0</text>
+          <graphics>
+            <offset x="0" y="-1"/>
+          </graphics>
+        </initialMarking>
+        <bound>
+          <text>3</text>
+        </bound>
+        <graphics>
+          <position page="1" x="310" y="210"/>
+        </graphics>
+      </place>
+      <place id="8">
+        <name>
+          <text>Closed</text>
+          <graphics>
+            <offset x="-10" y="20"/>
+          </graphics>
+        </name>
+        <comment>
+          <text/>
+          <graphics>
+            <offset x="-30" y="20"/>
+          </graphics>
+        </comment>
+        <initialMarking>
+          <text>1</text>
+          <graphics>
+            <offset x="0" y="-1"/>
+          </graphics>
+        </initialMarking>
+        <bound>
+          <text>3</text>
+        </bound>
+        <graphics>
+          <position page="1" x="320" y="460"/>
+        </graphics>
+      </place>
+      <transition id="9">
+        <name>
+          <text>Start opening</text>
+          <graphics>
+            <offset x="-10" y="20"/>
+          </graphics>
+        </name>
+        <comment>
+          <text/>
+          <graphics>
+            <offset x="-30" y="20"/>
+          </graphics>
+        </comment>
+        <priority>1</priority>
+        <signalInputGuards>
+          <signalinputguard>
+            <concreteSyntax language="iopt">
+              <text>is_sensor_open = 0</text>
+              <expression>
+                <operand type="input-signal" idRef="is_sensor_open" seq="6"/>
+                <operation operator="equal" seq="7">
+                  <operand type="literal" value="0" seq="8"/>
+                </operation>
+              </expression>
+            </concreteSyntax>
+          </signalinputguard>
+        </signalInputGuards>
+        <inputEvents>
+          <event idRef="ie_button_pressed"/>
+        </inputEvents>
+        <graphics>
+          <position page="1" x="270" y="310"/>
+        </graphics>
+        <outputEvents>
+          
+          
+        </outputEvents>
+        <signalOutputActions>
+          <signalOutputAction idRef="os_motor_open">
+            <value>
+              <concreteSyntax language="iopt">
+                <text>1</text>
+                <expression>
+                  <operand type="literal" value="1" seq="4"/>
+                </expression>
+              </concreteSyntax>
+            </value>
+          </signalOutputAction>
+          <signalOutputAction idRef="os_motor_on">
+            <value>
+              <concreteSyntax language="iopt">
+                <text>1</text>
+                <expression>
+                  <operand type="literal" value="1" seq="3"/>
+                </expression>
+              </concreteSyntax>
+            </value>
+          </signalOutputAction>
+        </signalOutputActions>
+      </transition>
+      <arc id="10" source="7" target="6">
+        <type>normal</type>
+        <graphics/>
+        <inscription>
+          <graphics>
+            <offset page="1" x="-9" y="6"/>
+          </graphics>
+          <value>1</value>
+        </inscription>
+      </arc>
+      <arc id="11" source="6" target="2">
+        <type>normal</type>
+        <graphics/>
+        <inscription>
+          <graphics>
+            <offset page="1" x="-9" y="5"/>
+          </graphics>
+          <value>1</value>
+        </inscription>
+      </arc>
+      <arc id="12" source="2" target="4">
+        <type>normal</type>
+        <graphics/>
+        <inscription>
+          <graphics>
+            <offset page="1" x="-6" y="-2"/>
+          </graphics>
+          <value>1</value>
+        </inscription>
+      </arc>
+      <arc id="13" source="4" target="3">
+        <type>normal</type>
+        <graphics/>
+        <inscription>
+          <graphics>
+            <offset page="1" x="7" y="-2"/>
+          </graphics>
+          <value>1</value>
+        </inscription>
+      </arc>
+      <arc id="14" source="3" target="5">
+        <type>normal</type>
+        <graphics/>
+        <inscription>
+          <graphics>
+            <offset page="1" x="10" y="5"/>
+          </graphics>
+          <value>1</value>
+        </inscription>
+      </arc>
+      <arc id="15" source="5" target="8">
+        <type>normal</type>
+        <graphics/>
+        <inscription>
+          <graphics>
+            <offset page="1" x="9" y="6"/>
+          </graphics>
+          <value>1</value>
+        </inscription>
+      </arc>
+      <arc id="16" source="8" target="9">
+        <type>normal</type>
+        <graphics/>
+        <inscription>
+          <graphics>
+            <offset page="1" x="7" y="11"/>
+          </graphics>
+          <value>1</value>
+        </inscription>
+      </arc>
+      <arc id="17" source="9" target="7">
+        <type>normal</type>
+        <graphics/>
+        <inscription>
+          <graphics>
+            <offset page="1" x="-7" y="11"/>
+          </graphics>
+          <value>1</value>
+        </inscription>
+      </arc>
+      <transition id="18">
+        <name>
+          <text>Limited_Reached</text>
+          <graphics>
+            <offset x="-10" y="20"/>
+          </graphics>
+        </name>
+        <comment>
+          <text/>
+          <graphics>
+            <offset x="-30" y="20"/>
+          </graphics>
+        </comment>
+        <priority>1</priority>
+        <signalInputGuards>
+          <signalinputguard>
+            <concreteSyntax language="iopt">
+              <text>os_motor_counter = 3</text>
+              <expression>
+                <operand type="output-signal" idRef="os_motor_counter" seq="1"/>
+                <operation operator="equal" seq="2">
+                  <operand type="literal" value="3" seq="3"/>
+                </operation>
+              </expression>
+            </concreteSyntax>
+          </signalinputguard>
+        </signalInputGuards>
+        <inputEvents/>
+        <graphics>
+          <position page="1" x="780" y="240"/>
+        </graphics>
+        <outputEvents>
+          <event idRef="oe_limited_reached"/>
+        </outputEvents>
+      </transition>
+      <place id="20">
+        <name>
+          <text>Stop</text>
+          <graphics>
+            <offset x="-10" y="20"/>
+          </graphics>
+        </name>
+        <comment>
+          <text/>
+          <graphics>
+            <offset x="-30" y="20"/>
+          </graphics>
+        </comment>
+        <initialMarking>
+          <text>0</text>
+          <graphics>
+            <offset x="0" y="-1"/>
+          </graphics>
+        </initialMarking>
+        <bound>
+          <text>3</text>
+        </bound>
+        <graphics>
+          <position page="1" x="780" y="380"/>
+        </graphics>
+      </place>
+      <arc id="21" source="18" target="20">
+        <type>normal</type>
+        <graphics/>
+        <inscription>
+          <graphics>
+            <offset page="1" x="10" y="5"/>
+          </graphics>
+          <value>1</value>
+        </inscription>
+      </arc>
+      <arc id="22" source="2" target="18">
+        <type>normal</type>
+        <graphics/>
+        <inscription>
+          <graphics>
+            <offset page="1" x="1" y="-4"/>
+          </graphics>
+          <value>1</value>
+        </inscription>
+      </arc>
+    </net>
+  </pnml>
+</Snoopy>
