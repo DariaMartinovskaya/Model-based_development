@@ -7,6 +7,9 @@ Here tasks performed within the subject as well as final project are collected.
 
 - ### [Task 2: RENEW models: Alternating Consumers & Sequential Stores with Multiple Consumers](https://github.com/DariaMartinovskaya/Model-based_development/blob/main/README.md#task-2-renew-models-alternating-consumers--sequential-stores-with-multiple-consumers-1)
 
+- ### [Task 3: Producer-Consumer System with Modular Structure](https://github.com/DariaMartinovskaya/Model-based_development/edit/main/README.md#task-3-producer-consumer-system-with-modular-structure-1)
+
+
 # Task 1: Model using a Place/Transition Petri net for online purchasing train tickets system 
 
 ![T1](MBDTask1.png)
@@ -95,3 +98,78 @@ A resource must move from the first store to the second before being eligible fo
 After the resource reaches the second store, any of three consumers can consume it (non-deterministic selection).
 
 <a href="MBDTask2.2.rnw">Source rnw model.</a>
+
+# Task 3: Producer-Consumer System with Modular Structure
+
+Model objective: Build a flexible, modular producer-consumer system with synchronization and message passing using uplinks and downlinks.
+
+### Exercise 1 – Scalable Producer-Consumer Model
+
+![T3.1-3.2](MBDTask3.13.2.png)
+
+Model: A generalized producer-consumer system with:
+
+5 producers: represented as tokens like ["producer", 1] to ["producer", 5]
+
+3 consumers: ["consumer", 1] to ["consumer", 3]
+
+Scalability: Model graph remains unchanged regardless of the number of producers or consumers—only token counts change.
+
+Mechanism: Producers create products and send them to a shared storage; consumers receive and consume products.
+
+### Exercise 2 – Ordered Consumption (Round-Robin)
+
+Extension: Consumers consume in a fixed circular order:
+
+Consumer 1
+
+Consumer 2
+
+Consumer 3
+
+Back to Consumer 1
+
+Implementation: A circular counter controls access, enforcing strict consumption order.
+
+<a href="MBDTask3.1-3.2.rnw">Source rnw model.</a>
+
+### Exercise 3 – Modular System with Uplinks/Downlinks
+
+![T3.3](MBDTask3.3.png)
+
+Modularization: Model is divided into three disconnected subnets:
+
+Production Module:
+
+Producers generate products and send them to storage via uplink put.
+
+Tokens format: ["producer", N, "a product"]
+
+Storage Module:
+
+Stores items in slots (capacity 5).
+
+Handles incoming items via uplink :s(...).
+
+Forwards items to consumers via downlink get.
+
+Consumption Module:
+
+Receives products via downlink get.
+
+Consumers only consume products matching their ID, enforcing correct delivery.
+
+Uses matching logic: consumer can only consume if consumer ID == product ID.
+
+
+This RNW model implements:
+
+Scalable production and consumption logic.
+
+Ordered consumer execution using a circular counter.
+
+Clear separation of concerns via modular Petri nets with uplinks/downlinks.
+
+Realistic simulation of a distributed producer-storage-consumer architecture.
+
+<a href="MBDTask3.3.rnw">Source rnw model.</a>
