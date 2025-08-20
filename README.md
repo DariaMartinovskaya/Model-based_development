@@ -173,3 +173,21 @@ Clear separation of concerns via modular Petri nets with uplinks/downlinks.
 Realistic simulation of a distributed producer-storage-consumer architecture.
 
 <a href="MBDTask3.3.rnw">Source rnw model.</a>
+
+# Task 4: Door Control System with Signal-Based Motor and Counter
+
+Model requirements:
+
+- A button controls a door that opens and closes. But you can also use two or three buttons.
+
+- The button opens the door by switching on a motor. 
+
+- The same button is used to close the door.
+
+- The motor can operate in two directions and accepts three commands: "direction", "start" and "stop".
+
+- Add a counter that works by incrementing the value of a range-type output signal. Note that you must enter a minimum and maximum value. Then add an output event that uses this output signal. Finally, add the output event to a transition.
+
+- You must use at least one input signal and one input event.
+
+
