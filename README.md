@@ -9,6 +9,8 @@ Here tasks performed within the subject as well as final project are collected.
 
 - ### [Task 3: RENEW models: Producer-Consumer System with Modular Structure](https://github.com/DariaMartinovskaya/Model-based_development/edit/main/README.md#task-3-producer-consumer-system-with-modular-structure-1)
 
+- ### [Task 4: Door Control System with Signal-Based Motor and Counter](https://github.com/DariaMartinovskaya/Model-based_development/edit/main/README.md#task-4-door-control-system-with-signal-based-motor-and-counter-1)
+
 
 # Task 1: Model using a Place/Transition Petri net for online purchasing train tickets system 
 
